@@ -2,6 +2,8 @@ name: Build home-assistant
 
 on:
   push:
+    branches:
+      - master
     paths:
       - ./home-assistant
       - ./.github/workflows/home-assistant.yml
