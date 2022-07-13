@@ -1,0 +1,11 @@
+name: Build home-assistant
+
+on:
+  push:
+    paths:
+      - ./home-assistant
+      - ./.github/workflows/home-assistant.yml
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
