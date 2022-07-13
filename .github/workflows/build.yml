@@ -14,8 +14,8 @@ on:
         default: latest
       context:
         type: string
-        required: true
-        description: context to build in
+        required: false
+        description: context to build in, defaults to name
 
   workflow_dispatch:
     inputs:
@@ -30,8 +30,8 @@ on:
         default: latest
       context:
         type: string
-        required: true
-        description: context to build in
+        required: false
+        description: context to build in, defaults to name
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - working-directory: ${{ inputs.context }}
+      - working-directory: ${{ inputs.context || inputs.name }}
         run: |
-          docker build -t ${{ inputs.name }}:${{ inputs.tag }} ${{ inputs.context }}
+          docker build -t ${{ inputs.name }}:${{ inputs.tag }} .
           docker push ${{ inputs.name }}:${{ inputs.tag }}
