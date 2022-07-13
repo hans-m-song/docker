@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - ./home-assistant
+      - ./home-assistant/**
       - ./.github/workflows/home-assistant.yml
 
 jobs:
